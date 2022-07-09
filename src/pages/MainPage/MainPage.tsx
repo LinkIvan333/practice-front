@@ -3,14 +3,18 @@ import { Link } from 'react-router-dom';
 
 import { RouteEnum } from 'config/routes';
 import {Title} from "./MainPage.styles";
+import Header from "components/header";
+import Footer from "components/footer";
 
 const MainPage: React.FC = () => {
   return (
     <div >
-      <Title>Главная</Title>
-      <Link to={RouteEnum.onboarding}>
+        <Header />
+        <Title>Главная</Title>
+        <Link to={RouteEnum.onboarding}>
         К онбордингу
-      </Link>
+        </Link>
+        <Footer />
     </div>
   );
 };
