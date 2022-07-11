@@ -9,13 +9,7 @@ const Root: React.FC = () => {
   return (
     <Routes location={location}>
       {ROUTES.map(({ path, PageComponent }) => (
-        <Route
-          key={path}
-          path={path}
-          element={
-              <PageComponent />
-          }
-        />
+        <Route key={path} path={path} element={<PageComponent />} />
       ))}
     </Routes>
   );

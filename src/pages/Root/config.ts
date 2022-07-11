@@ -9,7 +9,6 @@ type RouteType = {
   PageComponent: React.ComponentType;
 };
 
-
 const ROUTES: RouteType[] = [
   {
     path: RouteEnum.main,

@@ -2,3 +2,7 @@
     margin: 0;
     padding: 0;
 }
+
+.menu-item:hover{
+    color: #c2c2c2;
+}
