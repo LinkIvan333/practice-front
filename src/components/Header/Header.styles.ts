@@ -6,6 +6,7 @@ import favorite from 'img/heart-o.png'
 import cart from 'img/cart.png'
 import user from 'img/user.png'
 import bell from 'img/bell.png'
+import {Link} from "react-router-dom";
 
 export const StyledHeader = styled.div`
   width: 100%;
@@ -137,7 +138,7 @@ export const Search = styled.div`
   
 `;
 
-export const BelowNavigationItem = styled(NavigationWrapper)`
+export const BelowNavigationItem = styled(Link)`
   color: white;
   margin: 0 2rem;
 

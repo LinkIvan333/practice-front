@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-    BelowBlock, BelowNavigationItem, BelowNavigationWrapper, Cart,
+    BelowBlock, BelowNavigationItem, Cart,
     Favorite,
     InputWrapper,
     Logo, NavigationWrapper, Notification, Profile, Search,
@@ -8,6 +8,7 @@ import {
     StyledInput,
     UpperBlock
 } from "components/Header/Header.styles";
+import {RouteEnum} from "config/routes";
 
 const Header: React.FC = () => {
     return (
@@ -16,9 +17,9 @@ const Header: React.FC = () => {
                 <Logo/>
                 <NavigationWrapper>
                     {/*todo: доделать выпадающий каталог и переходы по страницам*/}
-                    <BelowNavigationItem>Каталог</BelowNavigationItem>
-                    <BelowNavigationItem>Оплата и Доствака</BelowNavigationItem>
-                    <BelowNavigationItem> О нас</BelowNavigationItem>
+                    <BelowNavigationItem to={RouteEnum.catalog}>Каталог</BelowNavigationItem>
+                    <BelowNavigationItem  to={RouteEnum.payAndDelivery}>Оплата и Доствака</BelowNavigationItem>
+                    <BelowNavigationItem  to={RouteEnum.about}> О нас</BelowNavigationItem>
                 </NavigationWrapper>
                 <InputWrapper>
                     <Search/>
