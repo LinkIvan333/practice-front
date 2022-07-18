@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import './index.css';
+import './index.scss';
 import Root from 'pages/Root';
 
 const App = () => (

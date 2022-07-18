@@ -2,6 +2,9 @@ import ESBuild, {BuildOptions} from 'esbuild'
 import path from 'path'
 import {CleanPlugin} from './plugins/CleanPlugin';
 import {HTMLPlugin} from "./plugins/HTMLPlugin";
+import { sassPlugin } from "esbuild-sass-plugin";
+import postcss from 'postcss';
+import autoprefixer from 'autoprefixer';
 
 const mode = process.env.MODE || 'development';
 
@@ -30,8 +33,14 @@ const config: BuildOptions = {
     plugins: [
         CleanPlugin,
         HTMLPlugin({
-            title: 'Ulbi tv',
-        })
+            title: 'Моделька',
+        }),
+        sassPlugin({
+            async transform(source) {
+                const { css } = await postcss([autoprefixer]).process(source);
+                return css;
+            },
+        }),
     ],
 }
 

@@ -1,17 +1,19 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-
-import { RouteEnum } from 'config/routes';
-import {Title} from "./MainPage.styles";
+import {Footer} from "components/footer";
+import {Header} from "components/Header";
+import {Carousel} from "pages/MainPage/components/Carousel";
+import News from "./components/News/News";
+import {WorkShop} from "pages/MainPage/components/WorkShop";
 
 const MainPage: React.FC = () => {
   return (
-    <div >
-      <Title>Главная</Title>
-      <Link to={RouteEnum.onboarding}>
-        К онбордингу
-      </Link>
-    </div>
+    <>
+        <Header/>
+        <Carousel/>
+        <News/>
+        <WorkShop/>
+        <Footer/>
+    </>
   );
 };
 
