@@ -4,7 +4,7 @@ import config from './esbuild-config';
 import express from 'express';
 import {EventEmitter} from 'events';
 
-const PORT = Number(process.env.PORT) || 3000;
+const PORT = Number(process.env.PORT) || 8080;
 
 const app = express();
 const emitter = new EventEmitter();

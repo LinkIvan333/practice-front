@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import logo from "img/logo.png";
 
 import search from 'img/search.png';
@@ -47,7 +47,8 @@ export const Logo = styled.div`
 `;
 
 export const InputWrapper = styled.div`
-  width: 16rem;
+  width: 100%;
+  max-width: 27rem;
   height: 2rem;
   background: none;
   border: 1px white solid;
@@ -134,15 +135,34 @@ export const Search = styled.div`
   height: 1.5rem;
   background: url("${search}") no-repeat center / contain;
   border: none;
-  
-  
 `;
+
+export const CatalogWrapper = styled.div<{show: boolean}>`
+  position: absolute;
+  width: 80vw;
+  height: 700px;
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+  
+
+  ${({show = false})=>show &&  css`
+    opacity: 1;
+    pointer-events: visible;
+  `}
+`
+
+export const CatalogLinkWrapper = styled.div`
+  position: relative;
+  display: inline;
+`
 
 export const BelowNavigationItem = styled(Link)`
   color: white;
   margin: 0 2rem;
-
   position: relative;
+  text-decoration: none;
 
   &::after {
     content: "";

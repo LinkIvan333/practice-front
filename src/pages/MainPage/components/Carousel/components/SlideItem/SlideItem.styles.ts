@@ -18,6 +18,9 @@ export const InfoWrapper = styled.div`
   width: 50%;
   height: 100%;
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `;
 
 export const SlideItemTitle = styled.h3`
