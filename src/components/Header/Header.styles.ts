@@ -1,5 +1,7 @@
 import styled, {css} from "styled-components";
 import logo from "img/logo.png";
+import menu from "img/menu.png";
+
 
 import search from 'img/search.png';
 import favorite from 'img/heart-o.png'
@@ -7,6 +9,7 @@ import cart from 'img/cart.png'
 import user from 'img/user.png'
 import bell from 'img/bell.png'
 import {Link} from "react-router-dom";
+import {DEVICE, SIZES} from "styles/sizes";
 
 export const StyledHeader = styled.div`
   width: 100%;
@@ -44,6 +47,13 @@ export const Logo = styled.div`
   width: 4rem;
   height: 4rem;
   background: url("${logo}") no-repeat center / contain;
+
+  @media ${DEVICE.tablet} {
+    width: 2rem;
+    height: 2rem;
+    background: url("${menu}") no-repeat center / contain;
+    margin-right:2rem;
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -57,6 +67,10 @@ export const InputWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media ${DEVICE.laptop} {
+    display: none;
+  }
 `;
 
 export const StyledInput = styled.input`
@@ -72,6 +86,28 @@ export const NavigationWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 35%;
+  padding: 0 1rem;
+
+  @media ${DEVICE.tablet} {
+    display: none;
+  }
+
+
+  @media ${DEVICE.laptop} {
+    width: 45%;
+  }
+`
+
+export const IconsWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  max-width: 20%;
+
+  @media ${DEVICE.tablet} {
+    max-width: 50%;
+  }
 `
 
 export const Favorite = styled.button`
@@ -130,11 +166,20 @@ export const Cart = styled.button`
   }
 `;
 
+export const SearchIcon = styled.div`
+  width: 1.5rem;
+  height: 1.5rem;
+  background: url("${search}") no-repeat center / contain;
+
+  @media (min-width: ${SIZES.laptop}) {
+    display: none;
+  }
+`;
+
 export const Search = styled.div`
   width: 1.5rem;
   height: 1.5rem;
   background: url("${search}") no-repeat center / contain;
-  border: none;
 `;
 
 export const CatalogWrapper = styled.div<{show: boolean}>`
@@ -160,7 +205,6 @@ export const CatalogLinkWrapper = styled.div`
 
 export const BelowNavigationItem = styled(Link)`
   color: white;
-  margin: 0 2rem;
   position: relative;
   text-decoration: none;
 

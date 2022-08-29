@@ -1,8 +1,10 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 import list from 'img/list.png';
 import grid from 'img/grid.png';
 import lines from 'img/lines.png';
+import cross from 'img/cross.svg';
+import downArrow from "img/downArrow.svg";
 
 
 export const FilterWrapper = styled.div`

@@ -1,65 +1,57 @@
-import * as React from "react";
-import {Header} from "components/Header";
-import {Footer} from "components/footer";
-import {CatalogGrid, CatalogWrapper} from "pages/Catalog/Catalog.styles";
-import Item from "./components/Item/Item";
-import {Filter} from "pages/Catalog/components/FilterSection";
-import {ModalCard} from "components/ModalCard";
-import {useRootStore} from "store/globals/hooks";
-import {observer} from "mobx-react";
-import { ThreeDots } from  'react-loader-spinner'
-import {Loader} from "components/Loader";
+import * as React from 'react';
+import { VirtuosoGrid } from 'react-virtuoso';
+import { Header } from 'components/Header';
+import { Footer } from 'components/footer';
+import { CatalogWrapper, ItemWrapper, RowWrapper } from 'pages/Catalog/Catalog.styles';
+import Item from './components/Item/Item';
+import { Filter } from 'pages/Catalog/components/FilterSection';
+import { ModalCard } from 'components/ModalCard';
+import { useRootStore } from 'store/globals/hooks';
+import { observer } from 'mobx-react';
+import { Loader } from 'components/Loader';
+import styled from 'styled-components';
+import {InfiniteScrollWrapper} from "pages/Catalog/components/InfiniteScrollWrapper";
 
 const Catalog: React.FC = () => {
-    const [showCard, setShowCard] = React.useState(false);
+  const [showCard, setShowCard] = React.useState(false);
 
-    const rootStore = useRootStore();
+  const rootStore = useRootStore();
 
-    const handleClick = React.useCallback((id: number)=>{
-        console.log('id',id)
-        rootStore.setModel(id);
+  const handleClick = React.useCallback(
+    (id: number) => {
+        console.log(id);
+      rootStore.getCurrentModel(id).then((r) => {
         setShowCard(true);
-        console.log(rootStore.currentModal)
+        console.log('setShowCard', rootStore.currentModal);
+      });
+    },
+    [rootStore.currentModal]
+  );
 
-    }, [rootStore.currentModal])
+  const handleClose = React.useCallback(() => {
+    setShowCard(false);
+  }, []);
 
-    const handleClose = React.useCallback(()=>{
-        setShowCard(false);
-    }, [])
+  React.useEffect(() => {
+    rootStore.getModals();
+  }, []);
 
-    React.useEffect(()=>{
-        rootStore.getPictures();
-    }, [])
-
-    return (
-        <>
-            <Header/>
-            <Filter/>
-            <CatalogWrapper>
-                {
-                    rootStore.isLoading ? <Loader />: (
-                        <CatalogGrid>
-                            {rootStore.models.map((item)=>(
-                                <Item name={item.description} articule={item.article} price={item.price} onClick={()=>handleClick(item.modelID)}/>
-                            ))}
-                        </CatalogGrid>
-                    )
-                }
-            </CatalogWrapper>
-            <Footer/>
-            <ModalCard
-                scale={rootStore.currentModal?.scale}
-                articule={rootStore.currentModal?.article}
-                show={showCard}
-                title={rootStore.currentModal?.description}
-                onClose={handleClose}
-                weight={rootStore.currentModal?.weight}
-                dimensions={rootStore.currentModal?.dimensions}
-                price={rootStore.currentModal?.price}
-                sell={rootStore.currentModal?.sell}
-            />
-        </>
-    );
+  return (
+    <>
+      <Header />
+      <Filter />
+      <CatalogWrapper>
+        {rootStore.isLoading && <Loader />}
+          <InfiniteScrollWrapper onClick={handleClick}/>
+      </CatalogWrapper>
+      <Footer />
+      <ModalCard
+        show={showCard}
+        onClose={handleClose}
+        card={rootStore.currentModal}
+      />
+    </>
+  );
 };
 
 export default observer(Catalog);

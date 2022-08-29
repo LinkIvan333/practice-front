@@ -1,72 +1,87 @@
-import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
-import {ENDPOINTS} from "config/endpoints";
-import {action, makeObservable, observable} from "mobx";
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { ENDPOINTS } from 'config/endpoints';
+import { action, computed, makeObservable, observable } from 'mobx';
+import {ApiModelTypeArray, ApiResponse, ModelType} from 'store/globals/RootStore/types';
+import { response } from 'express';
 
-type ModelType = {
-    modelID: number;
-    article: string;
-    scale: string;
-    weight: number;
-    dimensions: string;
-    price: number;
-    description: string;
-    sell?: boolean;
-    sellPrice?: number;
-    sellStart?: string;
-    sellEnd?: string;
-}
+
 
 class RootStore {
+  modelsList: ModelType[] = [];
+  isLoading = false;
+  currentModal: ModelType | undefined = undefined;
+  page = 1;
+  hasMore = true;
 
-    models: ModelType[] = [];
-    isLoading= false;
-    currentModal: ModelType | undefined = undefined;
+  endOfList = false;
 
-    constructor() {
-        makeObservable(this, {
-            models: observable.ref,
-            isLoading: observable,
-            currentModal: observable.ref,
+  constructor() {
+    makeObservable(this, {
+      modelsList: observable.ref,
+      isLoading: observable,
+      currentModal: observable.ref,
 
-            getPictures: action,
-            setModel: action,
-        })
+      getModals: action,
+      getCurrentModel: action,
+      setModel: action,
+      hasMore: observable,
+
+      modelCount: computed,
+    });
+  }
+
+  get modelCount(): number {
+    return this.modelsList.length;
+  }
+
+  setModel = (id: number) => {
+    this.currentModal = this.modelsList.find((item) => item.modelID === id);
+  };
+
+  getModals = async (loadMore = false) => {
+    if (this.isLoading || this.endOfList) {
+      return;
+    }
+    //TODO: поменять потом ссылку нахуй
+    this.isLoading = true;
+
+    if (loadMore) {
+      this.page++;
     }
 
-    // pushModels = (response:) => {
-    //     response.forEach((item) => {
-    //         this.models.push({
-    //             modelID: item.
-    //         })
-    //     })
-    // }
+    const { data }: ApiResponse<ApiModelTypeArray[]> = await axios.get(ENDPOINTS.models.url, {
+      params: {
+        perPage: 10,
+        page: this.page,
+      },
+    });
 
-    setModel = (id: number)=>{
-
-        this.currentModal = this.models.find((item)=>item.modelID === id)
-    }
-
-
-    getPictures = async () => {
-        //TODO: поменять потом ссылку нахуй
-        this.isLoading = true;
-
-        const response = await axios.get(ENDPOINTS.models.url)
-
-        // const response = await  fetch('http://localhost:3000/model', {
-        //     method: 'GET',
-        //     headers: {
-        //         'Content-Type': 'application/json;charset=utf-8'
-        //     }
-        // })
-
-
-        this.models = response.data
-        console.log( this.models)
+    if (data) {
+      if (data.length === 0) {
+        this.endOfList = true;
+        this.hasMore  = false;
         this.isLoading = false;
-
+        return;
+      }
+      console.log('data', data);
+      this.modelsList = [...this.modelsList, ...data];
     }
 
+    console.log('this.modelsList', this.modelsList);
+
+    this.isLoading = false;
+  };
+
+  getCurrentModel = async (id: number) => {
+    const { data }: ApiResponse<ApiModelTypeArray[]> = await axios.get(ENDPOINTS.models.url + `/${id}`);
+
+    if(data){
+      this.currentModal = data[0];
+    }
+
+
+    console.log('data', this.currentModal);
+  };
 }
 
 export default RootStore;

@@ -5,13 +5,13 @@ import {
     Cart,
     CatalogLinkWrapper,
     CatalogWrapper,
-    Favorite,
+    Favorite, IconsWrapper,
     InputWrapper,
     Logo,
     NavigationWrapper,
     Notification,
     Profile,
-    Search,
+    Search, SearchIcon,
     StyledHeader,
     StyledInput,
     UpperBlock
@@ -46,12 +46,13 @@ const Header: React.FC = () => {
                     <Search/>
                     <StyledInput/>
                 </InputWrapper>
-                <NavigationWrapper>
+                <IconsWrapper>
+                    <SearchIcon/>
                     <Notification/>
                     <Favorite/>
                     <Cart/>
                     <Profile/>
-                </NavigationWrapper>
+                </IconsWrapper>
 
 
             </UpperBlock>

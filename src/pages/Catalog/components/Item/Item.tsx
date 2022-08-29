@@ -6,7 +6,7 @@ type ItemProps = {
     name: string;
     articule: string;
     image?: string;
-    onClick: VoidFunction;
+    onClick: ()=>void;
 }
 const Item: React.FC<ItemProps> = ({price, name, articule, image, onClick}: ItemProps) => {
     return (

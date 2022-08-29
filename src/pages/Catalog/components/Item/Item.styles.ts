@@ -1,7 +1,8 @@
 import styled, {css} from "styled-components";
 
 export const ItemWrapper = styled.div`
-  height: 100%;
+  //height: 100%;
+  width: 100%;
   padding: 1rem;
   color: white;
   display: flex;
