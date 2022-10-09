@@ -1,25 +1,9 @@
-export type Method =
-    | 'get' | 'GET'
-    | 'delete' | 'DELETE'
-    | 'head' | 'HEAD'
-    | 'options' | 'OPTIONS'
-    | 'post' | 'POST'
-    | 'put' | 'PUT'
-    | 'patch' | 'PATCH'
-    | 'purge' | 'PURGE'
-    | 'link' | 'LINK'
-    | 'unlink' | 'UNLINK';
+import { EndpointsType } from '@ktsstudio/mediaproject-stores';
 
-export type EndpointType = {
-    url: string;
-    method?: Method;
+const getApiUrl = () => process.env.API_URL || '/' + '';
+
+const ENDPOINTS: EndpointsType = {
+  auth: { url: `${getApiUrl()}user/auth` },
 };
 
-const getApiUrl = () => 'http://localhost:3000/';
-
-export const ENDPOINTS:Record<string, EndpointType> = {
-    models : {
-        url: `${getApiUrl()}model`,
-        method: 'GET',
-    }
-}
+export default ENDPOINTS;

@@ -1,10 +1,13 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { ENDPOINTS } from 'config/endpoints';
-import { action, computed, makeObservable, observable } from 'mobx';
-import {ApiModelTypeArray, ApiResponse, ModelType} from 'store/globals/RootStore/types';
 import { response } from 'express';
+import { action, computed, makeObservable, observable } from 'mobx';
 
-
+import ENDPOINTS from 'config/endpoints';
+import {
+  ApiModelTypeArray,
+  ApiResponse,
+  ModelType,
+} from 'store/globals/RootStore/types';
 
 class RootStore {
   modelsList: ModelType[] = [];
@@ -49,17 +52,20 @@ class RootStore {
       this.page++;
     }
 
-    const { data }: ApiResponse<ApiModelTypeArray[]> = await axios.get(ENDPOINTS.models.url, {
-      params: {
-        perPage: 10,
-        page: this.page,
-      },
-    });
+    const { data }: ApiResponse<ApiModelTypeArray[]> = await axios.get(
+      ENDPOINTS.models.url,
+      {
+        params: {
+          perPage: 10,
+          page: this.page,
+        },
+      }
+    );
 
     if (data) {
       if (data.length === 0) {
         this.endOfList = true;
-        this.hasMore  = false;
+        this.hasMore = false;
         this.isLoading = false;
         return;
       }
@@ -73,12 +79,13 @@ class RootStore {
   };
 
   getCurrentModel = async (id: number) => {
-    const { data }: ApiResponse<ApiModelTypeArray[]> = await axios.get(ENDPOINTS.models.url + `/${id}`);
+    const { data }: ApiResponse<ApiModelTypeArray[]> = await axios.get(
+      ENDPOINTS.models.url + `/${id}`
+    );
 
-    if(data){
+    if (data) {
       this.currentModal = data[0];
     }
-
 
     console.log('data', this.currentModal);
   };

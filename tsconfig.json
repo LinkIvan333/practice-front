@@ -1,46 +1,33 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "components/*": ["src/components/*"],
-      "config/*": ["src/config/*"],
-      "styles/*": ["src/styles/*"],
-      "store/*": ["src/store/*"],
-      "utils/*": ["src/utils/*"],
-      "pages/*": ["src/pages/*"],
-      "img/*": ["src/img/*"]
+      "components": ["components/*"],
+      "config": ["config/*"],
+      "img": ["img/*"],
+      "pages": ["pages/*"],
+      "store": ["store/*"],
+      "styles": ["styles/*"],
+      "utils": ["utils/*"]
     },
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    // куда собираем
-    "outDir": "./build/",
-    // запрет на any
-    "noImplicitAny": true,
-    "module": "ESNext",
-    // в какой формат копилируем, в данном случае ecmascript 6
-    "target": "es6",
-    "jsx": "react-jsx",
-    // Компилятор будет обрабатывать не только TS файлы, но и JS файлы
+    "typeRoots": ["./node_modules/@types", "types"],
+    "strictPropertyInitialization": false,
     "allowJs": true,
-    // Строгий режим
-    "strict": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
-    "noFallthroughCasesInSwitch": true,
-    "resolveJsonModule": true,
-    // Обязательное поле при использовании с esbuild
-    "isolatedModules": true,
     "noEmit": true,
+    "outDir": "./public/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "strict": true,
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "react"
   },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  }
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }

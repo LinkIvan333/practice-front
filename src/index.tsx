@@ -1,13 +1,16 @@
-import React from 'react';
-import {createRoot} from 'react-dom/client'
-import App from './App'
-import './second.css'
+import { markup } from '@ktsstudio/mediaproject-style';
+import * as React from 'react';
+import { render } from 'react-dom';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
-const rootElement = document.getElementById('root');
+import App from './App';
+import './styles/styles.scss';
 
-if(!rootElement) {
-    throw new Error('root not found')
-}
+const startApp = () => {
+  markup().init();
 
-const root = createRoot(rootElement);
-root.render(<App />);
+  render(<App />, document.getElementById('root'));
+};
+
+startApp();

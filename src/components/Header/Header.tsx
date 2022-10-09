@@ -1,66 +1,23 @@
 import * as React from 'react';
-import {
-    BelowBlock,
-    BelowNavigationItem,
-    Cart,
-    CatalogLinkWrapper,
-    CatalogWrapper,
-    Favorite, IconsWrapper,
-    InputWrapper,
-    Logo,
-    NavigationWrapper,
-    Notification,
-    Profile,
-    Search, SearchIcon,
-    StyledHeader,
-    StyledInput,
-    UpperBlock
-} from "components/Header/Header.styles";
-import {RouteEnum} from "config/routes";
-import {useNavigate} from "react-router-dom";
-import {Catalog} from "components/Header/components/Catalog";
 
-const Header: React.FC = () => {
-    const navigate = useNavigate();
-    const [showCatalog, setShowCatalog] = React.useState(false);
+import { AboutAnchorEnum, RouteEnum } from 'config/routes';
 
-    return (
-        <StyledHeader>
-            <UpperBlock>
-                <Logo onClick={() => navigate(RouteEnum.main)}/>
-                <NavigationWrapper>
-                    {/*todo: доделать выпадающий каталог и переходы по страницам*/}
-                    <CatalogLinkWrapper onMouseEnter={() => setShowCatalog(true)}
-                                        onMouseLeave={() => setShowCatalog(false)}>
-                        <BelowNavigationItem to={RouteEnum.catalog}>
-                            Каталог</BelowNavigationItem>
-                        <CatalogWrapper show={showCatalog}>
-                            <Catalog/>
-                        </CatalogWrapper>
-                    </CatalogLinkWrapper>
+import HeaderLink from '../HeaderLink/HeaderLink';
 
-                    <BelowNavigationItem to={RouteEnum.payAndDelivery}>Оплата и Доствака</BelowNavigationItem>
-                    <BelowNavigationItem to={RouteEnum.about}> О нас</BelowNavigationItem>
-                </NavigationWrapper>
-                <InputWrapper>
-                    <Search/>
-                    <StyledInput/>
-                </InputWrapper>
-                <IconsWrapper>
-                    <SearchIcon/>
-                    <Notification/>
-                    <Favorite/>
-                    <Cart/>
-                    <Profile/>
-                </IconsWrapper>
+import { BottomHeaderWrapper } from './Header.styles';
 
+const Header = () => {
+  return (
+    <BottomHeaderWrapper>
+      <HeaderLink to={RouteEnum.catalog}>Каталог</HeaderLink>
+      <HeaderLink to={RouteEnum.catalog}>Мастерская</HeaderLink>
+      <HeaderLink to={AboutAnchorEnum.payAndDelivery}>
+        Оплата и Доставка
+      </HeaderLink>
+      <HeaderLink to={AboutAnchorEnum.contacts}>Контакты</HeaderLink>
+      <HeaderLink to={AboutAnchorEnum.about}>О нас</HeaderLink>
+    </BottomHeaderWrapper>
+  );
+};
 
-            </UpperBlock>
-            <BelowBlock>
-
-            </BelowBlock>
-        </StyledHeader>
-    )
-}
-
-export default Header;
+export default React.memo(Header);

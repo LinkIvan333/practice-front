@@ -1,3 +1,1 @@
-export const normalizeModels = () => {
-
-}
+export const normalizeModels = () => {};
