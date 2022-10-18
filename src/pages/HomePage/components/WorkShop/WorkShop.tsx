@@ -1,14 +1,13 @@
 import * as React from 'react';
 
-import { NewsWrapper, Title, Text } from './WorkShop.styles';
+import { Title, Text, WorkShopWrapper } from './WorkShop.styles';
 
 const WorkShop = () => {
   return (
-    <NewsWrapper>
+    <WorkShopWrapper>
       <Title>Мастерская</Title>
-
       <Text>текст для предложения мастерской</Text>
-    </NewsWrapper>
+    </WorkShopWrapper>
   );
 };
 

@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 import background from './img/workShop.png';
 
-export const NewsWrapper = styled.div`
+export const WorkShopWrapper = styled.div`
   width: 100%;
-  height: 500px;
+  height: 70rem;
   padding: 0 3rem;
   color: white;
   display: flex;

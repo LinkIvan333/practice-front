@@ -4,10 +4,11 @@ import { useLocation } from 'react-router';
 import { Header } from 'components/Header';
 import { AboutAnchorArray, AboutAnchorEnum } from 'config/routes';
 
+import { Footer } from '../Footer';
 import SideBar from '../SideBar/SideBar';
 import { StickyHeader } from '../StickyHeader';
 
-import { LayoutWrapper } from './Layout.styles';
+import { LayoutWrapper, Wrapper, Wrapper1 } from './Layout.styles';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -33,12 +34,15 @@ const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
   }, [location.pathname]);
 
   return (
-    <div ref={layout}>
+    <Wrapper ref={layout}>
       <StickyHeader onMenuClick={handleMenuClick} />
       <Header />
       <SideBar isSidebarOpen={isSidebarOpen} onClose={handleClose} />
-      <LayoutWrapper>{children}</LayoutWrapper>
-    </div>
+      <LayoutWrapper>
+        {children}
+        <Footer />
+      </LayoutWrapper>
+    </Wrapper>
   );
 };
 

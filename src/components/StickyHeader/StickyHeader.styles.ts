@@ -5,7 +5,7 @@ import logo from 'img/logo.png';
 import colors from 'styles/colors';
 
 export const UpperHeaderWrapper = styled.div`
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100%;
   height: 9rem;

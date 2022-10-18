@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import { AboutAnchorEnum, RouteEnum } from '../../config/routes';
-import HeaderLink from '../HeaderLink/HeaderLink';
 
 import {
   CloseButton,
   SidebarContainer,
   SidebarHeader,
+  SidebarLink,
   SidebarLogo,
   SidebarWrapper,
 } from './SideBar.styles';
@@ -21,20 +21,28 @@ const SideBar: React.FC<SideBarProps> = ({
   onClose,
 }: SideBarProps) => {
   return (
-    <SidebarWrapper>
-      <SidebarContainer show={isSidebarOpen}>
-        <SidebarHeader>
-          <SidebarLogo />
-          <CloseButton onClick={onClose} />
-        </SidebarHeader>
-        <HeaderLink to={RouteEnum.catalog}>Каталог</HeaderLink>
-        <HeaderLink to={RouteEnum.catalog}>Мастерская</HeaderLink>
-        <HeaderLink to={AboutAnchorEnum.payAndDelivery}>
-          Оплата и Доставка
-        </HeaderLink>
-        <HeaderLink to={AboutAnchorEnum.contacts}>Контакты</HeaderLink>
-        <HeaderLink to={AboutAnchorEnum.about}>О нас</HeaderLink>
-      </SidebarContainer>
+    <SidebarWrapper show={isSidebarOpen}>
+      {/*<SidebarContainer>*/}
+      <SidebarHeader>
+        <SidebarLogo>Моделька</SidebarLogo>
+        <CloseButton onClick={onClose} />
+      </SidebarHeader>
+      <SidebarLink onClick={onClose} to={RouteEnum.catalog}>
+        Каталог
+      </SidebarLink>
+      <SidebarLink onClick={onClose} to={RouteEnum.catalog}>
+        Мастерская
+      </SidebarLink>
+      <SidebarLink onClick={onClose} to={AboutAnchorEnum.payAndDelivery}>
+        Оплата и Доставка
+      </SidebarLink>
+      <SidebarLink onClick={onClose} to={AboutAnchorEnum.contacts}>
+        Контакты
+      </SidebarLink>
+      <SidebarLink onClick={onClose} to={AboutAnchorEnum.about}>
+        О нас
+      </SidebarLink>
+      {/*</SidebarContainer>*/}
     </SidebarWrapper>
   );
 };

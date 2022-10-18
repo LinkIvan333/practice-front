@@ -1,16 +1,23 @@
 import * as React from 'react';
 
-import { RouteEnum } from '../../config/routes';
-
-import { HeaderLinkWrapper, StyledHeaderLink } from './HeaderLink.styles';
+import { StyledHeaderLink } from './HeaderLink.styles';
 
 type LinkProps = {
   children: React.ReactNode;
   to: string;
+  onClick?: VoidFunction;
 };
 
-const HeaderLink: React.FC<LinkProps> = ({ children, to }: LinkProps) => {
-  return <StyledHeaderLink to={to}>{children}</StyledHeaderLink>;
+const HeaderLink: React.FC<LinkProps> = ({
+  children,
+  to,
+  onClick,
+}: LinkProps) => {
+  return (
+    <StyledHeaderLink onClick={onClick} to={to}>
+      {children}
+    </StyledHeaderLink>
+  );
 };
 
 export default HeaderLink;

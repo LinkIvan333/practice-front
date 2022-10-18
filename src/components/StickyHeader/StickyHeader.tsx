@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router';
 
 import { RouteEnum } from 'config/routes';
 import basket from 'img/cart.png';
@@ -20,6 +21,16 @@ type StickyHeaderProps = {
 };
 
 const StickyHeader: React.FC<StickyHeaderProps> = ({ onMenuClick }) => {
+  const navigate = useNavigate();
+
+  const handleNavigateCart = React.useCallback(() => {
+    navigate(RouteEnum.cart);
+  }, []);
+
+  const handleNavigateFavorites = React.useCallback(() => {
+    navigate(RouteEnum.favorites);
+  }, []);
+
   return (
     <UpperHeaderWrapper>
       <MenuLogoWrapper>
@@ -29,10 +40,10 @@ const StickyHeader: React.FC<StickyHeaderProps> = ({ onMenuClick }) => {
 
       <HeaderIconsWrapper>
         <HeaderIconWrapper>
-          <HeaderIconImage src={favorite} />
+          <HeaderIconImage onClick={handleNavigateFavorites} src={favorite} />
         </HeaderIconWrapper>
         <HeaderIconWrapper>
-          <HeaderIconImage src={basket} />
+          <HeaderIconImage onClick={handleNavigateCart} src={basket} />
         </HeaderIconWrapper>
         <HeaderIconWrapper>
           <HeaderIconImage src={profile} />

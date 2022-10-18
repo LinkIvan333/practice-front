@@ -5,6 +5,9 @@ import { About } from 'pages/About';
 import { Catalog } from 'pages/Catalog';
 import { HomePage } from 'pages/HomePage';
 
+import CartPage from '../CartPage';
+import FavoritesPage from '../FavoritesPage';
+
 type RouteType = {
   path: RouteEnum;
   PageComponent: React.ComponentType;
@@ -22,6 +25,14 @@ const ROUTES: RouteType[] = [
   {
     path: RouteEnum.catalog,
     PageComponent: Catalog,
+  },
+  {
+    path: RouteEnum.cart,
+    PageComponent: CartPage,
+  },
+  {
+    path: RouteEnum.favorites,
+    PageComponent: FavoritesPage,
   },
 ];
 

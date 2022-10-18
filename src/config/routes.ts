@@ -2,6 +2,8 @@ export enum RouteEnum {
   home = '/',
   about = '/about/:block',
   catalog = '/catalog',
+  cart = '/cart',
+  favorites = '/favorites',
 }
 
 export enum AboutAnchorEnum {

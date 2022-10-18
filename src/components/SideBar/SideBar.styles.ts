@@ -1,4 +1,8 @@
+import { NavLink } from 'react-router-dom';
 import styled, { css, keyframes } from 'styled-components';
+
+import close from 'img/close.png';
+import colors from 'styles/colors';
 
 const fadeIn = keyframes`
   0% {
@@ -29,42 +33,17 @@ const fadeOut = keyframes`
   }
 `;
 
-export const SidebarWrapper = styled.div`
-  text-align: center;
-
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background: var(--clr-white);
-    transition: var(--transition);
-    transform: translate(-100%);
-    z-index: -1;
-  }
-  .show-sidebar {
-    transform: translate(0);
-    z-index: 999;
-  }
-  .cart-btn-wrapper {
-    margin: 2rem auto;
-  }
-  @media screen and (min-width: 992px) {
-    .sidebar {
-      display: none;
-    }
-  }
-`;
-
-export const SidebarContainer = styled.aside<{ show?: boolean }>`
+export const SidebarWrapper = styled.div<{ show?: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 999;
+  padding: 5rem 1.2rem 0;
+  text-align: center;
   width: 100%;
   height: 100%;
   transform: translate(-100%);
-  background: #18a0fb;
+  background: #171717;
   transition: opacity 500ms linear, transform 500ms linear;
 
   ${({ show }) =>
@@ -80,18 +59,30 @@ export const SidebarContainer = styled.aside<{ show?: boolean }>`
       : null}
 `;
 
+export const SidebarContainer = styled.aside`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+
 export const SidebarHeader = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: ${colors.red};
 `;
 
 export const CloseButton = styled.div`
   width: 4rem;
   height: 4rem;
-  background: black;
+  background: url('${close}') no-repeat center / contain;
   cursor: pointer;
 
   &:hover {
@@ -102,5 +93,21 @@ export const CloseButton = styled.div`
 export const SidebarLogo = styled.div`
   width: 100%;
   height: 5rem;
-  background: gray;
+  color: ${colors.white};
+  font-weight: 500;
+  font-size: 3.2rem;
+  text-align: left;
+`;
+
+export const SidebarLink = styled(NavLink)`
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: ${colors.white};
+  font-weight: 500;
+  font-size: 2rem;
+  &:hover {
+    background: ${colors.redLight};
+  }
 `;

@@ -7,7 +7,7 @@ export const BottomHeaderWrapper = styled.div`
 
   @media (min-width: 992px) {
     display: flex;
-    position: fixed;
+    position: absolute;
     top: 9rem;
     width: 100%;
     height: 5rem;
